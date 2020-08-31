@@ -72,6 +72,13 @@ function initialize () {
   editor.session.setMode('ace/mode/text')
   editor.session.on('change', throttledParse)
   inputElement.onkeyup = throttledParse
+  document.querySelector('.vim-mode').onchange = function (e) {
+    if (e.target.checked) {
+      editor.setKeyboardHandler('ace/keyboard/vim')
+    } else {
+      editor.setKeyboardHandler('')
+    }
+  }
 
   document.querySelector('.btn.compile').onclick = compile
 
