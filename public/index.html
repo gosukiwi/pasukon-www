@@ -13,7 +13,6 @@
     </header>
 
     <div class="container">
-      <h1>Pasukon</h1>
       <p>Pasukon generates parsers based on a relatively easy to learn grammar.
       It's based on parser combinators, and also implements a lexing step.</p>
 
@@ -25,7 +24,15 @@
 
     <div class="editor">
       <div class="editor__grammar">
-        <h2 class="editor__title">Grammar</h2>
+        <h2 class="editor__title">
+          <div class="action-bar">
+            <div class="action-bar__title">Grammar</div>
+            <div class="action-bar__actions">
+              <label class="label">Enable caching <input type="checkbox" class="enable-caching" name="enableCaching"></label>
+              <div class="btn btn--secondary compile">Compile Grammar</div>
+            </div>
+          </div>
+        </h2>
         <pre id="ace-editor">lex
   match A 'A'
   match B 'B'
@@ -40,6 +47,7 @@ start
         <textarea class="grammar-input" name="grammar-input"></textarea>
       </div>
       <div class="editor__result">
+        <h2 class="editor__title">Output</h2>
         <pre class="grammar-output"></pre>
       </div>
     </div>
@@ -53,6 +61,7 @@ start
     <script src="https://pagecdn.io/lib/ace/1.4.12/ace.min.js" crossorigin="anonymous" integrity="sha256-T5QdmsCQO5z8tBAXMrCZ4f3RX8wVdiA0Fu17FGnU1vU="></script>
     <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.2/dist/pretty-print-json.min.js></script>
     <script type="text/javascript" src="pasukon.dist.min.js"></script>
+    <script type="text/javascript" src="pasukon.grammar.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>

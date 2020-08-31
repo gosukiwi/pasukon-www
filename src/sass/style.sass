@@ -80,16 +80,18 @@ h1, h2, h3, h4, h5, h6
   padding: 1rem
   box-shadow: 2px 2px $color-black
 
-  h1, h2, h3, h4, h5, h6
-    > a
-      color: $color-contrast
-
   &__title
     margin-top: 0
     margin-bottom: .5rem
     padding: 0
     color: $color-white
     text-transform: uppercase
+
+    .action-bar
+      font-size: 1rem
+
+    .action-bar__title
+      font-size: 1.5rem
 
   &__grammar
     grid-area: grammar
@@ -99,10 +101,6 @@ h1, h2, h3, h4, h5, h6
 
   &__result
     grid-area: result
-    background-color: $color-white
-    overflow: auto
-    padding: .5rem
-    box-sizing: border-box
 
 #ace-editor
   margin: 0
@@ -117,6 +115,43 @@ h1, h2, h3, h4, h5, h6
   border: none
   padding: .5rem
   box-sizing: border-box
+  font-size: 1.25rem
 
 .grammar-output
   margin: 0
+  height: calc(100% - 41px)
+  background-color: $color-white
+  overflow: auto
+  padding: .5rem
+  box-sizing: border-box
+  font-size: 1.25rem
+
+.action-bar
+  display: flex
+  align-items: center
+
+  &__title
+    flex-grow: 1
+
+  &__actions
+    display: flex
+
+    & > * + *
+      margin-left: 1rem
+
+.btn
+  padding: .25rem .75rem
+  text-transform: capitalize
+  cursor: pointer
+
+  &--secondary
+    background-color: $color-secondary
+    color: $color-white
+
+    &:hover
+      background-color: shade($color-secondary, 5%)
+
+.label
+  padding: .25rem .75rem
+  text-transform: capitalize
+  cursor: pointer
