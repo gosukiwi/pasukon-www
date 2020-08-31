@@ -31,8 +31,10 @@ module.exports = function (grunt) {
     },
     copy: {
       build: {
-        src: 'src/index.html',
-        dest: 'public/index.html'
+        files: [
+          { 'public/index.html': 'src/index.html' },
+          { expand: true, flatten: true, src: ['src/pasukon.*.js'], dest: 'public/' }
+        ]
       }
     },
     connect: {
@@ -71,6 +73,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-sass')
   grunt.loadNpmTasks('grunt-terser')
   grunt.loadNpmTasks('grunt-browserify')
-  grunt.registerTask('default', ['browserify', 'terser', 'sass', 'copy'])
+  // grunt.registerTask('default', ['browserify', 'terser', 'sass', 'copy'])
+  grunt.registerTask('default', ['browserify', 'sass', 'copy'])
   grunt.registerTask('serve', ['default', 'connect', 'watch'])
 }

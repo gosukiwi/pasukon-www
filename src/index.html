@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Pasukon &mdash; JavaScript Parser Generator</title>
+    <link rel=stylesheet href=https://cdn.jsdelivr.net/npm/pretty-print-json@0.2/dist/pretty-print-json.css>
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
@@ -25,8 +26,13 @@
     <div class="editor">
       <div class="editor__grammar">
         <h2 class="editor__title">Grammar</h2>
-        <pre id="ace-editor">start
-  | :a
+        <pre id="ace-editor">lex
+  match A 'A'
+  match B 'B'
+/lex
+
+start
+  | *:A then :B
   ;</pre>
       </div>
       <div class="editor__input">
@@ -34,7 +40,7 @@
         <textarea class="grammar-input" name="grammar-input"></textarea>
       </div>
       <div class="editor__result">
-        Matched...
+        <pre class="grammar-output"></pre>
       </div>
     </div>
 
@@ -45,6 +51,8 @@
     </div>
 
     <script src="https://pagecdn.io/lib/ace/1.4.12/ace.min.js" crossorigin="anonymous" integrity="sha256-T5QdmsCQO5z8tBAXMrCZ4f3RX8wVdiA0Fu17FGnU1vU="></script>
+    <script src=https://cdn.jsdelivr.net/npm/pretty-print-json@0.2/dist/pretty-print-json.min.js></script>
+    <script type="text/javascript" src="pasukon.dist.min.js"></script>
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>

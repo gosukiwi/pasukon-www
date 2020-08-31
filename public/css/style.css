@@ -1,3 +1,9 @@
+.json-key {
+  color: #cc5c52; }
+
+.json-string {
+  color: #8ebd4c; }
+
 body {
   color: #111;
   margin-top: 0;
@@ -37,11 +43,13 @@ h1 {
   font-size: 1.5rem; }
 
 .editor {
-  margin: 0 2rem;
-  height: 95vh;
   display: grid;
   grid-template-areas: "grammar input" "grammar result";
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
   column-gap: 1rem;
+  margin: 0 2rem;
+  height: 95vh;
   background-color: #cc5c52;
   padding: 1rem;
   box-shadow: 2px 2px #111; }
@@ -70,3 +78,6 @@ h1 {
   width: calc(100% - 5px);
   height: calc(100% - 60px);
   outline: none; }
+
+.grammar-output {
+  margin: 0; }
