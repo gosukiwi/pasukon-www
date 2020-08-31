@@ -20,17 +20,17 @@ function parse () {
   const grammar = editor.getValue()
   const input = inputElement.value
 
-  if (!input || !grammar) return
-
   let parser = null
   try {
     parser = new Pasukon(grammar, { cache: shouldUseCaching() })
   } catch (err) {
     setOutput(`Invalid grammar: ${err}`)
+    inputElement.disabled = true
     return
   }
 
   try {
+    inputElement.disabled = false
     const result = parser.parse(input)
     dangerouslySetOutput(prettyPrintJson.toHtml(result, { indent: 2 }))
     return result
@@ -74,6 +74,8 @@ function initialize () {
   inputElement.onkeyup = throttledParse
 
   document.querySelector('.btn.compile').onclick = compile
+
+  parse()
 }
 
 initialize()
