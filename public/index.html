@@ -24,13 +24,27 @@
 
     <div class="editor">
       <div class="editor__grammar">
-        <textarea name="name" rows="8" cols="80"></textarea>
+        <h2 class="editor__title">Grammar</h2>
+        <pre id="ace-editor">start
+  | :a
+  ;</pre>
       </div>
-      <div class="editor__output">
-        output here
+      <div class="editor__input">
+        <h2 class="editor__title">Input</h2>
+        <textarea class="grammar-input" name="grammar-input"></textarea>
+      </div>
+      <div class="editor__result">
+        Matched...
       </div>
     </div>
 
+    <div class="container">
+      <h1>Documentation</h1>
+      <p>You can find the full documentation at the <a
+      href="https://github.com/gosukiwi/Pasukon">GitHub repo</a>.</p>
+    </div>
+
+    <script src="https://pagecdn.io/lib/ace/1.4.12/ace.min.js" crossorigin="anonymous" integrity="sha256-T5QdmsCQO5z8tBAXMrCZ4f3RX8wVdiA0Fu17FGnU1vU="></script>
     <script type="text/javascript" src="index.js"></script>
   </body>
 </html>

@@ -1,4 +1,4 @@
-const sass = require('node-sass');
+const sass = require('node-sass')
 
 module.exports = function (grunt) {
   grunt.initConfig({
@@ -52,16 +52,16 @@ module.exports = function (grunt) {
       },
       scripts: {
         files: ['src/**/*.js'],
-        tasks: ['browserify', 'terser'],
+        tasks: ['browserify', 'terser']
       },
       sass: {
         files: ['src/**/*.sass'],
-        tasks: ['sass'],
+        tasks: ['sass']
       },
       html: {
         files: ['src/**/*.html'],
-        tasks: ['copy'],
-      },
+        tasks: ['copy']
+      }
     }
   })
 
@@ -72,5 +72,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-terser')
   grunt.loadNpmTasks('grunt-browserify')
   grunt.registerTask('default', ['browserify', 'terser', 'sass', 'copy'])
-  grunt.registerTask('serve', ['connect', 'watch', 'default'])
+  grunt.registerTask('serve', ['default', 'connect', 'watch'])
 }
