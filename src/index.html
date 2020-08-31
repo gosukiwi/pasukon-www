@@ -35,17 +35,57 @@
           </div>
         </h2>
         <pre id="ace-editor">lex
-  match A 'A'
-  match B 'B'
+  match  NUMBER     /[0-9]+(?:\.[0-9]+)?/
+  match  PLUS       '+'
+  match  MINUS      '-'
+  match  TIMES      '*'
+  match  DIV        '/'
+  match  POPEN      '('
+  match  PCLOSE     ')'
+  ignore WHITESPACE /^\s+/
 /lex
 
+addition
+  | (substraction as :lhs) then :PLUS then (substraction as :rhs)
+  |> 'return $.lhs + $.rhs'
+  | substraction
+  ;
+
+substraction
+  | (multiplication as :lhs) then :MINUS then (multiplication as :rhs)
+  |> 'return $.lhs - $.rhs'
+  | multiplication
+  ;
+
+multiplication
+  | (division as :lhs) then :TIMES then (division as :rhs)
+  |> 'return $.lhs * $.rhs'
+  | division
+  ;
+
+division
+  | (expression as :lhs) then :DIV then (expression as :rhs)
+  |> 'return $.lhs / $.rhs'
+  | expression
+  ;
+
+expression
+  | :POPEN then (addition as :expr) then :PCLOSE
+  |> 'return $.expr'
+  | number
+  ;
+
+number
+  | :NUMBER 'return +$1'
+  ;
+
 start
-  | *:A then :B
+  | addition
   ;</pre>
       </div>
       <div class="editor__input">
         <h2 class="editor__title">Input</h2>
-        <textarea class="grammar-input" name="grammar-input"></textarea>
+        <textarea class="grammar-input" name="grammar-input">2 + 3 * 4</textarea>
       </div>
       <div class="editor__result">
         <h2 class="editor__title">Output</h2>
