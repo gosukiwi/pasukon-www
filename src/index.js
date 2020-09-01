@@ -68,8 +68,8 @@ function initialize () {
     'fontSize': '1rem',
     'tabSize': 2
   })
-  editor.setTheme('ace/theme/textmate')
-  editor.session.setMode('ace/mode/text')
+  editor.setTheme('ace/theme/sqlserver')
+  editor.session.setMode('ace/mode/pasukon')
   editor.session.on('change', throttledParse)
   inputElement.onkeyup = throttledParse
   document.querySelector('.vim-mode').onchange = function (e) {
