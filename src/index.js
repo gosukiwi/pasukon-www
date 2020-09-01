@@ -3,6 +3,7 @@ const Generator = require('./javascripts/generator')
 const editor = ace.edit('ace-editor')
 const inputElement = document.querySelector('.grammar-input')
 const output = document.querySelector('.grammar-output')
+const vimModeElement = document.querySelector('.vim-mode')
 
 function shouldUseCaching () {
   return document.querySelector('.enable-caching').checked
@@ -17,7 +18,8 @@ function dangerouslySetOutput (text) {
 }
 
 function save (grammar, input) {
-  sessionStorage.setItem('state', JSON.stringify({ grammar, input }))
+  const vim = vimModeElement.checked
+  sessionStorage.setItem('state', JSON.stringify({ grammar, input, cache: shouldUseCaching(), vim }))
 }
 
 function load () {
@@ -73,27 +75,33 @@ function compile () {
 function initialize () {
   const throttledParse = _.throttle(parse, 500)
 
-  editor.setOptions({
-    fontSize: '1rem',
-    tabSize: 2
-  })
-  editor.setTheme('ace/theme/sqlserver')
-  editor.session.setMode('ace/mode/pasukon')
-  editor.session.on('change', throttledParse)
-  inputElement.onkeyup = throttledParse
-  document.querySelector('.vim-mode').onchange = function (e) {
-    if (e.target.checked) {
+  function toggleVimMode () {
+    if (vimModeElement.checked) {
       editor.setKeyboardHandler('ace/keyboard/vim')
     } else {
       editor.setKeyboardHandler('')
     }
   }
 
-  document.querySelector('.btn.compile').onclick = compile
+  editor.setOptions({
+    fontSize: '1rem',
+    tabSize: 2
+  })
+  editor.setTheme('ace/theme/sqlserver')
+  editor.session.setMode('ace/mode/pasukon')
 
-  const { grammar, input } = load()
+  const { grammar, input, cache, vim } = load()
   if (grammar) editor.session.setValue(grammar)
   if (input) inputElement.value = input
+  document.querySelector('.enable-caching').checked = cache
+  vimModeElement.checked = vim
+  toggleVimMode()
+
+  editor.session.on('change', throttledParse)
+  inputElement.onkeyup = throttledParse
+  vimModeElement.onchange = toggleVimMode
+
+  document.querySelector('.btn.compile').onclick = compile
 
   parse()
 }
