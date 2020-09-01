@@ -23,7 +23,7 @@ function save (grammar, input) {
 }
 
 function load () {
-  return JSON.parse(sessionStorage.getItem('state'))
+  return JSON.parse(sessionStorage.getItem('state')) || {}
 }
 
 function parse () {
