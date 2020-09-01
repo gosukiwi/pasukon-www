@@ -126,3 +126,7 @@ h1:hover > a, h2:hover > a, h3:hover > a, h4:hover > a, h5:hover > a, h6:hover >
   padding: .25rem .75rem;
   text-transform: capitalize;
   cursor: pointer; }
+
+.emphasis {
+  color: #cc5c52;
+  font-weight: bold; }

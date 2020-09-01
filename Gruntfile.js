@@ -6,7 +6,7 @@ module.exports = function (grunt) {
     browserify: {
       build: {
         src: 'src/index.js',
-        dest: 'public/index.js',
+        dest: 'docs/index.js',
         options: {
           standalone: 'Pasukon'
         }
@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     terser: {
       build: {
         files: {
-          'public/index.js': 'public/index.js'
+          'docs/index.js': 'docs/index.js'
         }
       }
     },
@@ -25,15 +25,15 @@ module.exports = function (grunt) {
       },
       build: {
         files: {
-          'public/css/style.css': 'src/sass/style.sass'
+          'docs/css/style.css': 'src/sass/style.sass'
         }
       }
     },
     copy: {
       build: {
         files: [
-          { 'public/index.html': 'src/index.html' },
-          { expand: true, flatten: true, src: ['src/pasukon.*.js'], dest: 'public/' }
+          { 'docs/index.html': 'src/index.html' },
+          { expand: true, flatten: true, src: ['src/pasukon.*.js'], dest: 'docs/' }
         ]
       }
     },
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
       server: {
         options: {
           port: 8000,
-          base: 'public',
+          base: 'docs',
           hostname: 'localhost',
           livereload: true,
           open: true
@@ -73,7 +73,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-sass')
   grunt.loadNpmTasks('grunt-terser')
   grunt.loadNpmTasks('grunt-browserify')
-  // grunt.registerTask('default', ['browserify', 'terser', 'sass', 'copy'])
-  grunt.registerTask('default', ['browserify', 'sass', 'copy'])
+  grunt.registerTask('default', ['browserify', 'terser', 'sass', 'copy'])
+  // grunt.registerTask('default', ['browserify', 'sass', 'copy'])
   grunt.registerTask('serve', ['default', 'connect', 'watch'])
 }
