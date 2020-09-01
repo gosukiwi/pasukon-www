@@ -2,7 +2,7 @@
   color: #cc5c52; }
 
 .json-string {
-  color: #8ebd4c; }
+  color: #4868B4; }
 
 body {
   color: #111;
@@ -96,7 +96,7 @@ h1:hover > a, h2:hover > a, h3:hover > a, h4:hover > a, h5:hover > a, h6:hover >
 .grammar-output {
   margin: 0;
   height: calc(100% - 41px);
-  background-color: #fafafa;
+  background-color: #eeeeee;
   overflow: auto;
   padding: .5rem;
   box-sizing: border-box;
@@ -117,10 +117,10 @@ h1:hover > a, h2:hover > a, h3:hover > a, h4:hover > a, h5:hover > a, h6:hover >
   text-transform: capitalize;
   cursor: pointer; }
   .btn--secondary {
-    background-color: #8ebd4c;
+    background-color: #4868B4;
     color: #fafafa; }
     .btn--secondary:hover {
-      background-color: #87b448; }
+      background-color: #4463ab; }
 
 .label {
   padding: .25rem .75rem;
