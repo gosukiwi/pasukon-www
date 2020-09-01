@@ -12,13 +12,22 @@ function setOutput (text) {
   output.innerText = text
 }
 
-function dangerouslySetOutput(text) {
+function dangerouslySetOutput (text) {
   output.innerHTML = text
+}
+
+function save (grammar, input) {
+  sessionStorage.setItem('state', JSON.stringify({ grammar, input }))
+}
+
+function load () {
+  return JSON.parse(sessionStorage.getItem('state'))
 }
 
 function parse () {
   const grammar = editor.getValue()
   const input = inputElement.value
+  save(grammar, input)
 
   let parser = null
   try {
@@ -39,13 +48,13 @@ function parse () {
   }
 }
 
-function download(filename, text) {
+function download (filename, text) {
   var element = document.createElement('a')
   element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text))
   element.setAttribute('download', filename)
 
   element.style.display = 'none'
-  document.body.appendChild(element);
+  document.body.appendChild(element)
   element.click()
   document.body.removeChild(element)
 }
@@ -65,8 +74,8 @@ function initialize () {
   const throttledParse = _.throttle(parse, 500)
 
   editor.setOptions({
-    'fontSize': '1rem',
-    'tabSize': 2
+    fontSize: '1rem',
+    tabSize: 2
   })
   editor.setTheme('ace/theme/sqlserver')
   editor.session.setMode('ace/mode/pasukon')
@@ -81,6 +90,10 @@ function initialize () {
   }
 
   document.querySelector('.btn.compile').onclick = compile
+
+  const { grammar, input } = load()
+  if (grammar) editor.session.setValue(grammar)
+  if (input) inputElement.value = input
 
   parse()
 }

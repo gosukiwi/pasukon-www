@@ -4,6 +4,12 @@ module.exports = {
     commonjs: true,
     es2020: true
   },
+  globals: {
+    ace: 'readonly',
+    Pasukon: 'readonly',
+    prettyPrintJson: 'readonly',
+    grammar: 'readonly'
+  },
   extends: [
     'standard'
   ],
