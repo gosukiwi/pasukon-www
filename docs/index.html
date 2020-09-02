@@ -51,12 +51,12 @@
 /lex
 
 addition
-  | (substraction as :lhs) then :PLUS then (substraction as :rhs)
+  | (subtraction as :lhs) then :PLUS then (subtraction as :rhs)
   |> 'return $.lhs + $.rhs'
-  | substraction
+  | subtraction
   ;
 
-substraction
+subtraction
   | (multiplication as :lhs) then :MINUS then (multiplication as :rhs)
   |> 'return $.lhs - $.rhs'
   | multiplication
